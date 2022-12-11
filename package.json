@@ -29,7 +29,7 @@
     "exp-asynccache": "^1.2.1",
     "exp-config": "^2.0.1",
     "exp-fetch": "^3.1.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "log": "^6.0.0",
     "moment": "^2.29.4",
     "morgan": "^1.9.1",
