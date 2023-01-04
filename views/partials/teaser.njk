@@ -1,5 +1,5 @@
 <article class="teaser">
-  <div class="teaser__image">
+  <div class="teaser__image-wrap">
     {% if teaser.urlToImage %}
       <img src="{{ teaser.urlToImage }}">
     {% endif %}
@@ -9,11 +9,11 @@
       {{ teaser.title }}
     </h1>
   </a>
-  <p class="teaser__published">{{ teaser.publishedAt | dateFormat }}</p>
+  <time class="teaser__published">{{ teaser.publishedAt | dateFormat }}</time>
   {% if teaser.source and teaser.source.name %}
-    <a class="teaser__source" href="//{{ teaser.source.name }}" rel="author">{{ teaser.source.name }}</a>
+    <p class="teaser__source">{{ teaser.source.name }}</p>
   {% endif %}
-  <p>
+  <p class="teaser__description">
     {{ teaser.description }}
   </p>
 </article>
