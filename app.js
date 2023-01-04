@@ -1,17 +1,26 @@
-"use strict";
+const express = require("express");
+const config = require("exp-config");
+const errorHandler = require("./lib/init/errorHandler");
+const middleware = require("./lib/init/middleware");
+const routes = require("./lib/init/routes");
+const views = require("./lib/init/views");
+const app = express();
 
-const packageInfo = require("./package.json");
-const setupApp = require("./lib/init/setupApp.js");
-const app = setupApp();
-
-module.exports = app; // Expose app to tests
-
-// Only listen if started, not if included
-if (require.main === module) {
-  const port = Number(process.env.PORT) || 3000;
-  const server = app.listen(port, () => {
-    console.log("%s listening on port %d", packageInfo.name, server.address().port); // eslint-disable-line no-console
-  });
-
-  ["SIGTERM", "SIGINT", "SIGHUP"].forEach((evt) => process.once(evt, () => server.close(process.exit)));
+if (!config.APIKEY) {
+  console.log("APIKEY config doesn't exist. Add it to your .env file");
+  return;
 }
+
+process.env.TZ = "Europe/Stockholm";
+app.enable("trust proxy");
+app.disable("x-powered-by");
+
+middleware(app);
+routes(app);
+views(app);
+app.use(errorHandler);
+
+const port = Number(process.env.PORT) || 3000;
+app.listen(port, () => {
+  console.log(`Listening on port ${port}!`);
+});
