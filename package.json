@@ -9,7 +9,7 @@
     "url": "git@github.com:niklasHagner/text-news"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=18"
   },
   "scripts": {
     "dev": "npm run build && npm run watch",
@@ -21,7 +21,7 @@
     "build:dev": "cross-env NODE_ENV=development npm run build",
     "watch": "npm run watch:scripts & npm run watch:styles",
     "watch:dev": "cross-env NODE_ENV=development npm run watch",
-    "start": "node app"
+    "start": "node app.js"
   },
   "author": "Niklas Hagner",
   "license": "UNLICENSED",
